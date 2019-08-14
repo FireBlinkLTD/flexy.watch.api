@@ -1,0 +1,24 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "allowJs": true,
+    "outDir": "build",
+    "target": "es2017",
+    "lib": ["es2017"],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "build",
+    "node_modules"
+  ]
+}

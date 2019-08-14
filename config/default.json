@@ -1,0 +1,18 @@
+{
+  "log4js": {
+    "appenders": {
+      "out": {
+        "type": "console",
+        "layout": {
+          "type": "pattern",
+          "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p] [%c]%] - %m"
+        }
+      }
+    },
+    "categories": {
+      "request-logger": {"appenders": ["out"], "level": "info"},
+      "bin/www": {"appenders": ["out"], "level": "info"},
+      "default": { "appenders": ["out"], "level": "error" }
+    }
+  }
+}

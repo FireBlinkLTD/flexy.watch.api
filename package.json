@@ -1,4 +1,35 @@
 {
-    "name": "flexy-watch-api",
-    "license": "AGPLv3"
+  "name": "flexy-watch-api",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node build/bin/www",
+    "build": "tsc",
+    "watch": "nodemon --watch '**/*.ts' --ignore 'node_modules/**/*' --exec ts-node src/bin/www.ts",
+    "tslint": "tslint -c tslint.json 'src/**/*.ts'"
+  },
+  "dependencies": {
+    "@tsed/common": "5.25.1",
+    "@tsed/di": "5.25.1",
+    "@tsed/core": "5.25.1",
+    "@tsed/swagger": "5.25.1",
+    "@tsed/testing": "5.25.1",
+    "body-parser": "1.19.0",
+    "config": "3.2.2",
+    "express": "4.17.1",
+    "log4js": "5.0.0",
+    "pg": "7.12.1",
+    "reflect-metadata": "0.1.13",
+    "sequelize": "5.14.0",
+    "sequelize-typescript": "1.0.0-beta.4"
+  },
+  "devDependencies": {
+    "@types/body-parser": "1.17.0",
+    "@types/config": "0.0.34",
+    "@types/express": "4.17.0",
+    "ts-node": "8.3.0",
+    "nodemon": "1.19.1",
+    "tslint": "5.18.0",
+    "typescript": "3.5.3"
+  }
 }
