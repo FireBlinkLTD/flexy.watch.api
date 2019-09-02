@@ -1,4 +1,8 @@
 {
+  "db": {
+    "url": "postgres://postgres:postgres@localhost:5432/postgres",
+    "schema": "flexy_watch"
+  },
   "log4js": {
     "appenders": {
       "out": {
@@ -11,6 +15,7 @@
     },
     "categories": {
       "request-logger": {"appenders": ["out"], "level": "info"},
+      "database-logger": {"appenders": ["out"], "level": "debug"},
       "bin/www": {"appenders": ["out"], "level": "info"},
       "default": { "appenders": ["out"], "level": "error" }
     }
