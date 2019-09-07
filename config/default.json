@@ -3,10 +3,19 @@
     "url": "postgres://postgres:postgres@localhost:5432/postgres",
     "schema": "flexy_watch"
   },
-  "log4js": {
+  "logger": {
     "appenders": {
       "out": {
-        "type": "console",
+        "type": "stdout",
+        "levels": ["debug", "info"],
+        "layout": {
+          "type": "pattern",
+          "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p] [%c]%] - %m"
+        }
+      },
+      "err": {
+        "type": "stderr",
+        "levels": ["warn", "error"],
         "layout": {
           "type": "pattern",
           "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p] [%c]%] - %m"
@@ -14,10 +23,10 @@
       }
     },
     "categories": {
-      "request-logger": {"appenders": ["out"], "level": "info"},
-      "database-logger": {"appenders": ["out"], "level": "debug"},
-      "bin/www": {"appenders": ["out"], "level": "info"},
-      "default": { "appenders": ["out"], "level": "error" }
+      "request-logger": {"level": "info"},
+      "database-logger": {"level": "debug"},
+      "bin/www": {"level": "info"},
+      "default": {"level": "debug"}
     }
   }
 }

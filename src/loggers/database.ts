@@ -1,7 +1,7 @@
-import {Logger, QueryRunner} from "typeorm"
-import * as log4js from "log4js";
+import {Logger, QueryRunner} from "typeorm";
+import {LoggerUtil} from "../utils";
 
-const logger = log4js.getLogger("database-logger");
+const logger = LoggerUtil.getLogger("database-logger");
 
 export class DatabaseLogger implements Logger {
 

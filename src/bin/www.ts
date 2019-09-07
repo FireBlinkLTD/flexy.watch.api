@@ -1,12 +1,8 @@
-import * as log4js from "log4js";
-import * as config from "config";
+import {$log} from "ts-log-debug";
 import {App} from "../app";
+import {LoggerUtil} from "../utils";
 
-const log4jsConfig: any = config.get('log4js');
-
-log4js.configure(log4jsConfig);
-
-const logger = log4js.getLogger("bin/www");
+const logger = LoggerUtil.getLogger("bin/www");
 const app = new App();
 
 async function bootstrap(): Promise<void> {
@@ -15,6 +11,7 @@ async function bootstrap(): Promise<void> {
     logger.info("Server started...");
   } catch (e) {
     logger.error("Server closed: " + e);
+    await $log.shutdown();
   }
 }
 

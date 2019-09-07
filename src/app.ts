@@ -1,29 +1,30 @@
 import {GlobalAcceptMimesMiddleware, ServerLoader, ServerSettings} from "@tsed/common";
 import * as bodyParser from "body-parser";
-import * as config from "config";
+import * as compress from "compression";
+import * as cookieParser from "cookie-parser";
+import {get} from "config";
 import {IndexController} from "./controllers";
-import RequestLoggerMiddleware from "./middlewares/request-logger";
 import {Client} from "pg";
-import {DatabaseLogger} from "./lib/database-logger";
+import {DatabaseLogger} from "./loggers";
+import {IDBConfig} from "./interfaces";
+import {LoggerUtil} from "./utils";
 
-const dbConfig = config.get<{url: string, schema: string}>("db");
+const dbConfig = get<IDBConfig>("db");
 
 @ServerSettings({
-  acceptMimes: ["application/json"],
+  acceptMimes: [
+    "application/json",
+  ],
   mount: {
     "/api": "controllers/(!index).js",
     "/": [
-      IndexController
+      IndexController,
     ]
   },
   componentsScan: [
     "services/**/*.js",
-    "middlewares/**/*.js"
+    "middlewares/**/*.js",
   ],
-  logger: {
-    logRequest: false,
-    disableRoutesSummary: true
-  },
   typeorm: [
     {
       name: "default",
@@ -34,21 +35,23 @@ const dbConfig = config.get<{url: string, schema: string}>("db");
       synchronize: false,
       logger: new DatabaseLogger(),
       entities: [
-        `${__dirname}/entity/*.js`
+        `${__dirname}/entities/*.js`,
       ],
       migrations: [
-        `${__dirname}/migrations/*.js`
-      ]
+        `${__dirname}/migrations/*.js`,
+      ],
     }
   ],
-  httpPort: 3000
+  httpPort: 3000,
+  httpsPort: false,
 })
 export class App extends ServerLoader {
 
   public $onMountingMiddlewares(): void | Promise<any> {
     this
       .use(GlobalAcceptMimesMiddleware)
-      .use(RequestLoggerMiddleware)
+      .use(cookieParser())
+      .use(compress({}))
       .use(bodyParser.json())
       .use(bodyParser.urlencoded({
         extended: true
@@ -58,6 +61,8 @@ export class App extends ServerLoader {
   }
 
   public async $onInit(): Promise<any> {
+    this.injector.logger = LoggerUtil.getLogger();
+
     const client = new Client({connectionString: dbConfig.url});
     await client.connect();
     await client.query(`CREATE SCHEMA IF NOT EXISTS "${dbConfig.schema}"`);
