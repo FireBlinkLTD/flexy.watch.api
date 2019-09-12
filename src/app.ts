@@ -44,6 +44,14 @@ const dbConfig = get<IDBConfig>("db");
   ],
   httpPort: 3000,
   httpsPort: false,
+  swagger: [
+    {
+      cssPath: '${rootDir}/../spec/style.css',
+      specPath: '${rootDir}/../spec/swagger.default.json',
+      path: '/api-docs/v1',          
+      doc: 'v1'
+    }
+  ]
 })
 export class App extends ServerLoader {
 

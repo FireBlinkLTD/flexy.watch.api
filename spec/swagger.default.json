@@ -1,0 +1,26 @@
+{
+  "info": {
+    "description": "Flexible timetracking solution.",
+    "title": "Flexy.Watch",
+    "license": {
+      "name": "UNLICENSED"      
+    }
+  },  
+  "securityDefinitions": {
+    "jwt": {      
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"      
+    },
+    "header-x-auth-roles": {      
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-Auth-Roles"      
+    },
+    "header-x-auth-username": {      
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-Auth-Username"      
+    }
+  }
+}
