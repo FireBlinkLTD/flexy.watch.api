@@ -1,0 +1,6 @@
+{
+  "db": {
+    "url": "DATABASE_URL",
+    "schema": "SCHEMA"
+  }
+}
