@@ -9,7 +9,7 @@ export class HeaderBasedAuthMiddleware implements IMiddleware {
     @HeaderParams("x-auth-username") username: string,
     @Req() request: Express.Request & { [key: string]: any },
     @EndpointInfo() endpoint: EndpointInfo,
-  ) {
+  ): void {
     const options = endpoint.get(HeaderBasedAuthMiddleware);
 
     if (!username || !username.length) {

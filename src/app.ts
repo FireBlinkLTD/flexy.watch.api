@@ -48,7 +48,7 @@ const dbConfig = get<IDBConfig>("db");
     {
       cssPath: '${rootDir}/../spec/style.css',
       specPath: '${rootDir}/../spec/swagger.default.json',
-      path: '/api-docs/v1',          
+      path: '/api-docs/v1',
       doc: 'v1'
     }
   ]
