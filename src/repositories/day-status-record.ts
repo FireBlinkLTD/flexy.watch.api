@@ -1,5 +1,5 @@
 import {TypeORMService} from "@tsed/typeorm";
-import {Repository} from "typeorm";
+import {InsertResult, Repository} from "typeorm";
 import {Injectable} from "@tsed/di";
 import {AfterRoutesInit} from "@tsed/common";
 import {DayStatusRecord} from "../entities";
@@ -14,11 +14,11 @@ export class DayStatusRecordRepository implements AfterRoutesInit {
     this.repository = this.typeORMService.get().manager.getRepository(DayStatusRecord);
   }
 
-  public findAll(): Promise<any> {
+  public findAll(): Promise<DayStatusRecord[]> {
     return this.repository.find();
   }
 
-  public create(record: DayStatusRecord): Promise<any> {
+  public create(record: DayStatusRecord): Promise<InsertResult> {
     return this.repository.insert(record);
   }
 }

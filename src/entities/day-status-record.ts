@@ -1,13 +1,10 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity} from "typeorm";
 import {Enum, MaxLength, Property, Required} from "@tsed/common";
 import {DayStatusRecordType} from "../enums";
+import {BaseEntity} from "./base";
 
 @Entity("day_status_record")
-export class DayStatusRecord {
-
-  @PrimaryGeneratedColumn()
-  @Property()
-  id: number;
+export class DayStatusRecord extends BaseEntity {
 
   @Column()
   @MaxLength(200)

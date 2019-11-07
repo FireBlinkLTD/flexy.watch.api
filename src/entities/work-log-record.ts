@@ -1,12 +1,9 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
-import {MaxLength, Property, Required} from "@tsed/common";
+import {Column, Entity} from "typeorm";
+import {Property, Required} from "@tsed/common";
+import {BaseEntity} from "./base";
 
 @Entity("work_log_record")
-export class WorkLogRecord {
-
-  @PrimaryGeneratedColumn()
-  @Property()
-  id: number;
+export class WorkLogRecord extends BaseEntity {
 
   @Column({name: "project_id"})
   @Property()
@@ -14,15 +11,14 @@ export class WorkLogRecord {
   projectId: string;
 
   @Column()
-  @MaxLength(200)
   @Property()
   @Required()
   text: string;
 
-  @Column({name: "spent_time"})
+  @Column({name: "spent_time_seconds"})
   @Property()
   @Required()
-  spentTime: number;
+  spentTimeSeconds: number;
 
   @Column("date")
   @Property()

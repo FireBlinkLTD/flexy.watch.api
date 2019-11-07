@@ -1,5 +1,5 @@
 import {TypeORMService} from "@tsed/typeorm";
-import {Repository} from "typeorm";
+import {InsertResult, Repository} from "typeorm";
 import {Injectable} from "@tsed/di";
 import {AfterRoutesInit} from "@tsed/common";
 import {WorkLogRecord} from "../entities";
@@ -14,11 +14,11 @@ export class WorkLogRecordRepository implements AfterRoutesInit {
     this.repository = this.typeORMService.get().manager.getRepository(WorkLogRecord);
   }
 
-  public findAll(): Promise<any> {
+  public findAll(): Promise<WorkLogRecord[]> {
     return this.repository.find();
   }
 
-  public create(record: WorkLogRecord): Promise<any> {
+  public create(record: WorkLogRecord): Promise<InsertResult> {
     return this.repository.insert(record);
   }
 }

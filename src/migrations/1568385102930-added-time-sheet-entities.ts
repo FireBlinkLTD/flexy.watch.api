@@ -19,7 +19,7 @@ export class AddedTimeSheetRecord1568385102930 implements MigrationInterface {
             name: "text",
             type: "text"
           }, {
-            name: "spent_time",
+            name: "spent_time_seconds",
             type: "integer"
           }, {
             name: "date",

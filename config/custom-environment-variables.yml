@@ -1,3 +1,7 @@
 db:
-  url: DATABASE_URL
-  schema: SCHEMA
+  url: DB_URL
+  schema: DB_SCHEMA
+logger:
+  categories:
+    default:
+      level: LOG_LEVEL
